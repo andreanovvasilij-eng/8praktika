@@ -10,59 +10,63 @@ namespace Задание_5
     {
         static void Main(string[] args)
         {
-           
-                int M = 4; 
+                int M = 4;
                 int N = 4;
                 int[,] matrix = new int[M, N];
-                Random rand = new Random();
-                Console.WriteLine("Матрица:");
+                Random random = new Random();
+                Console.WriteLine("Матрица M на N");
                 for (int i = 0; i < M; i++)
                 {
                     for (int j = 0; j < N; j++)
                     {
-                        matrix[i, j] = rand.Next(1, 101);
-                        Console.Write($"{matrix[i, j],4}");
+                        matrix[i, j] = random.Next(1, 101);
+                        Console.Write(matrix[i, j] + " ");
                     }
                     Console.WriteLine();
                 }
-                Console.WriteLine("Седловые точки:");
-                bool hasSaddle = false;
-
-                for (int i = 0; i < M; i++) 
+                Console.WriteLine();
+                bool SaddleDot = false;
+                for (int i = 0; i < M; i++)
                 {
-                    int minInRow = matrix[i, 0];
-                    int colOfMin = 0;
-
+//строка
+                    int min = matrix[i, 0];
                     for (int j = 1; j < N; j++)
                     {
-                        if (matrix[i, j] < minInRow)
+                        if (matrix[i, j] < min)
                         {
-                            minInRow = matrix[i, j];
-                            colOfMin = j;
+                            min = matrix[i, j];
                         }
                     }
-                    bool isMaxInCol = true;
-                    for (int k = 0; k < M; k++)
+                    for (int j = 0; j < N; j++)
                     {
-                        if (matrix[k, colOfMin] > minInRow)
+                        if (matrix[i, j] == min)
                         {
-                            isMaxInCol = false;
-                            break;
+// столбец
+                            bool Max = true;
+                            for (int k = 0; k < M; k++)
+                            {
+                                if (matrix[k, j] > matrix[i, j])
+                                {
+                                    Max = false;
+                                    break;
+                                }
+                            }
+                            if (Max)
+                            {
+                                Console.WriteLine($"Седловая точка в строке{i}, столбце {j}, значение = {matrix[i, j]}");
+                                SaddleDot = true;
+                            }
                         }
-                    }
-                    if (isMaxInCol)
-                    {
-                        Console.WriteLine($"Координаты: ({i}, {colOfMin}), значение: {minInRow}");
-                        hasSaddle = true;
                     }
                 }
-                if (!hasSaddle)
+                if (!SaddleDot)
                 {
-                    Console.WriteLine("Седловых точек нет.");
+                    Console.WriteLine("Седловых точек нет");
                 }
             }
         }
+    }
+        
 
-   }
-
+   
 
