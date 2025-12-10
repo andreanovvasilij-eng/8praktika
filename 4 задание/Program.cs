@@ -24,7 +24,7 @@ namespace _4_задание
                     Console.WriteLine();
                 }
                 int winner = 0;
-            // 1. Горизонтальные линии
+            //строка
             for (int i = 0; i < 3; i++)
             {
                 if (game[i, 0] != '·' && game[i, 0] == game[i, 1] && game[i, 1] == game[i, 2])
@@ -33,7 +33,7 @@ namespace _4_задание
                     break; 
                 }
             }
-            // 2. Вертикальные линии 
+            //столбец 
             if (winner == '0')
             {
                 for (int j = 0; j < 3; j++)
@@ -45,27 +45,27 @@ namespace _4_задание
                     }
                 }
             }
-            // 3. Главная диагональ
+            //Главная диагональ
             if (winner == '0' && game[0, 0] != '·' && game[0, 0] == game[1, 1] && game[1, 1] == game[2, 2])
             {
                 winner = game[0, 0];
             }
-            // 4. Побочная диагональ 
+            //Побочная диагональ 
             if (winner == '0' && game[0, 2] != '·' && game[0, 2] == game[1, 1] && game[1, 1] == game[2, 0])
             {
                 winner = game[0, 2];
             }
             if (winner == 'X')
             {
-                Console.WriteLine("Победитель — крестики (X)!");
+                Console.WriteLine("Победитель — крестики");
             }
             else if (winner == 'O')
             {
-                Console.WriteLine("Победитель — нолики (O)!");
+                Console.WriteLine("Победитель — нолики");
             }
             else
             {
-                Console.WriteLine("Пока нет победителя.");
+                Console.WriteLine("Победителя нет");
             }
         }
 
