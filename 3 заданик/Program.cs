@@ -10,45 +10,57 @@ namespace _3_заданик
     {
         static void Main(string[] args)
         {
-          
-           
-                int M = 3;
-                int N = 4; 
-                int[,] original = new int[M, N];
-          Random rand = new Random();
-                Console.WriteLine("Исходный массив ({0} на {1}):", M, N);
-                for (int i = 0; i < M; i++)
+            Console.WriteLine("Введите значение M (Строка)");
+            int M = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите значение N (Столбец)");
+            int N = Convert.ToInt32(Console.ReadLine());
+            int[,] array = new int[M, N];
+            Random random = new Random();
+            for (int i = 0; i < M; i++)
+            {
+                for (int j = 0; j < N; j++)
                 {
-                    for (int j = 0; j < N; j++)
-                    {
-                        original[i, j] = rand.Next(1, 101);
-                        Console.Write($"{original[i, j],4}");
-                    }
-                    Console.WriteLine();
-                }
-                int[,] transposed = new int[N, M];
-                for (int i = 0; i < M; i++)
-                {
-                    for (int j = 0; j < N; j++)
-                    {
-                        transposed[j, i] = original[i, j];
-                    }
-                }
-                Console.WriteLine("Транспонированный массив ({0} на {1}):", N, M);
-                for (int i = 0; i < N; i++)
-                {
-                    for (int j = 0; j < M; j++)
-                    {
-                        Console.Write($"{transposed[i, j],4}");
-                    }
-                    Console.WriteLine();
+                    array[i, j] = random.Next(1, 101);
                 }
             }
+            Console.WriteLine($"Массив {M} на {N}");
+            for (int i = 0; i < M; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    Console.Write(array[i, j] + " ");
+                }
+                Console.WriteLine();
+            }           
+            int[,] transposed = new int[N, M];
+            for (int i = 0; i < M; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    transposed[j, i] = array[i, j];
+                }
+            }
+            Console.WriteLine($"Транспортированный массив {N} на {M}");
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < M; j++)
+                {
+                    Console.Write(transposed[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
         }
-
-
-
     }
+}
+
+
+
+
+
+
+
+
+    
 
 
 

@@ -10,68 +10,66 @@ namespace _4_задание
     {
         static void Main(string[] args)
         {
-                   // Создаём игровое поле 3×3
-                int[,] board = new int[3, 3];        
-                board[0, 0] = 1; board[0, 1] = 1; board[0, 2] = 1;  
-                board[1, 0] = 2; board[1, 1] = 0; board[1, 2] = 2;
-                board[2, 0] = 0; board[2, 1] = 2; board[2, 2] = 0;
-                Console.WriteLine("Игровое поле:");
+            char[,] game = new char[3, 3];
+            game[0, 0] = '·'; game[0, 1] = '·';  game[0, 2] = 'O';
+            game[1, 0] = 'X'; game[1, 1] = 'X';  game[1, 2] = 'X';
+            game[2, 0] = 'O'; game[2, 1] = '·';  game[2, 2] = 'O';
+            Console.WriteLine("Крестики нолики");   
                 for (int i = 0; i < 3; i++)
                 {
                     for (int j = 0; j < 3; j++)
                     {
-                        Console.Write(board[i, j] + " ");
+                        Console.Write(game[i, j] + " ");
                     }
                     Console.WriteLine();
                 }
-            int winner = 0;
-                for (int i = 0; i < 3; i++)
+                int winner = 0;
+            // 1. Горизонтальные линии
+            for (int i = 0; i < 3; i++)
+            {
+                if (game[i, 0] != '·' && game[i, 0] == game[i, 1] && game[i, 1] == game[i, 2])
                 {
-                    if (board[i, 0] == board[i, 1] && board[i, 1] == board[i, 2] && board[i, 0] != 0)
+                    winner = game[i, 0];
+                    break; 
+                }
+            }
+            // 2. Вертикальные линии 
+            if (winner == '0')
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (game[0, j] != '·' && game[0, j] == game[1, j] && game[1, j] == game[2, j])
                     {
-                        winner = board[i, 0];
+                        winner = game[0, j];
                         break;
                     }
                 }
-                if (winner == 0)
-                {
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (board[0, j] == board[1, j] && board[1, j] == board[2, j] && board[0, j] != 0)
-                        {
-                            winner = board[0, j];
-                            break;
-                        }
-                    }
-                }
-
-                if (winner == 0)
-                {                 
-                    if (board[0, 0] == board[1, 1] && board[1, 1] == board[2, 2] && board[0, 0] != 0)
-                    {
-                        winner = board[0, 0];
-                    }
-                    else if (board[0, 2] == board[1, 1] && board[1, 1] == board[2, 0] && board[0, 2] != 0)
-                    {
-                        winner = board[0, 2];
-                    }
-                }
-                Console.WriteLine();
-                if (winner == 1)
-                {
-                    Console.WriteLine("Победитель — крестики (1)!");
-                }
-                else if (winner == 2)
-                {
-                    Console.WriteLine("Победитель — нолики (2)!");
-                }
-                else
-                {
-                    Console.WriteLine("Победителя нет.");
-                }
+            }
+            // 3. Главная диагональ
+            if (winner == '0' && game[0, 0] != '·' && game[0, 0] == game[1, 1] && game[1, 1] == game[2, 2])
+            {
+                winner = game[0, 0];
+            }
+            // 4. Побочная диагональ 
+            if (winner == '0' && game[0, 2] != '·' && game[0, 2] == game[1, 1] && game[1, 1] == game[2, 0])
+            {
+                winner = game[0, 2];
+            }
+            if (winner == 'X')
+            {
+                Console.WriteLine("Победитель — крестики (X)!");
+            }
+            else if (winner == 'O')
+            {
+                Console.WriteLine("Победитель — нолики (O)!");
+            }
+            else
+            {
+                Console.WriteLine("Пока нет победителя.");
             }
         }
 
     }
+}
 
 
