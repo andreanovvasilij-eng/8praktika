@@ -12,8 +12,8 @@ namespace _4_задание
         {
             char[,] game = new char[3, 3];
             game[0, 0] = '·'; game[0, 1] = '·';  game[0, 2] = 'O';
-            game[1, 0] = 'X'; game[1, 1] = 'X';  game[1, 2] = 'X';
-            game[2, 0] = 'O'; game[2, 1] = '·';  game[2, 2] = 'O';
+            game[1, 0] = 'X'; game[1, 1] = '·';  game[1, 2] = 'X';
+            game[2, 0] = 'O'; game[2, 1] = 'O';  game[2, 2] = 'O';
             Console.WriteLine("Крестики нолики");   
                 for (int i = 0; i < 3; i++)
                 {
@@ -34,7 +34,7 @@ namespace _4_задание
                 }
             }
             //столбец 
-            if (winner == '0')
+            if (winner == 0)
             {
                 for (int j = 0; j < 3; j++)
                 {
@@ -46,12 +46,12 @@ namespace _4_задание
                 }
             }
             //Главная диагональ
-            if (winner == '0' && game[0, 0] != '·' && game[0, 0] == game[1, 1] && game[1, 1] == game[2, 2])
+            if (winner == 0 && game[0, 0] != '·' && game[0, 0] == game[1, 1] && game[1, 1] == game[2, 2])
             {
                 winner = game[0, 0];
             }
             //Побочная диагональ 
-            if (winner == '0' && game[0, 2] != '·' && game[0, 2] == game[1, 1] && game[1, 1] == game[2, 0])
+            if (winner == 0 && game[0, 2] != '·' && game[0, 2] == game[1, 1] && game[1, 1] == game[2, 0])
             {
                 winner = game[0, 2];
             }
